@@ -1,16 +1,16 @@
 import numpy as np
 
-# Step 1: Initialize centroids randomly
+#Initialize centroids randomly
 def initialize_centroids(X, k):
     indices = np.random.choice(X.shape[0], k, replace=False)
     return X[indices]
 
-# Step 2: Assign clusters based on closest centroid
+# Assign clusters based on closest centroid
 def assign_clusters(X, centroids):
     distances = np.linalg.norm(X[:, np.newaxis] - centroids, axis=2)
     return np.argmin(distances, axis=1)
 
-# Step 3: Update centroids
+# Update centroids
 def update_centroids(X, labels, k):
     new_centroids = []
     for i in range(k):
@@ -22,7 +22,7 @@ def update_centroids(X, labels, k):
             new_centroids.append(X[np.random.randint(0, X.shape[0])])
     return np.array(new_centroids)
 
-# Step 4: K-Means main function
+# K-Means main function
 def kmeans(X, k, max_iters=100):
     centroids = initialize_centroids(X, k)
 
@@ -30,7 +30,6 @@ def kmeans(X, k, max_iters=100):
         labels = assign_clusters(X, centroids)
         new_centroids = update_centroids(X, labels, k)
 
-        # Stop if centroids do not change
         if np.allclose(centroids, new_centroids):
             break
 
@@ -39,15 +38,14 @@ def kmeans(X, k, max_iters=100):
     return centroids, labels
 
 
-# 🔹 Example usage
 if __name__ == "__main__":
     # Sample data
     X = np.array([
-        [1, 2], [1.5, 1.8], [5, 8],
-        [8, 8], [1, 0.6], [9, 11]
+        [1, 2], [1, 1], [5, 8],
+        [8, 2], [1, 6], [5, 11]
     ])
 
-    k = 2
+    k = 7
     centroids, labels = kmeans(X, k)
 
     print("Centroids:\n", centroids)
