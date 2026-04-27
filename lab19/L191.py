@@ -34,7 +34,7 @@ def heart_classifier():
     # Probabilities
     probs = model.predict_proba(X_test)[:,1]
 
-    thresholds = [0.3, 0.5, 0.7]
+    thresholds = [0.2, 0.6, 0.9]
 
     for t in thresholds:
 
