@@ -2,14 +2,14 @@ import numpy as np
 
 # Data
 X = np.array([
-    [6,5],[6,9],[8,6],[8,8],[8,10],[9,2],[9,5],[10,10],
+    [8,5],[6,9],[8,6],[8,8],[8,10],[9,2],[9,5],[10,10],
     [10,13],[11,5],[11,8],[12,6],[12,11],[13,4],[14,8]
 ])
 
 # Labels (Blue=0, Red=1)
 y = np.array([
     0,0,1,1,1,0,1,1,
-    0,1,1,1,0,0,0
+    0,1,1,1,0,0,1
 ])
 
 from sklearn import svm
@@ -17,11 +17,11 @@ import matplotlib.pyplot as plt
 
 # Models
 rbf_model = svm.SVC(kernel='rbf', gamma=0.1)
-poly_model = svm.SVC(kernel='poly', degree=2)
+polynom_model = svm.SVC(kernel='polynomial', degree=2)
 
 # Train
 rbf_model.fit(X, y)
-poly_model.fit(X, y)
+polynom_model.fit(X, y)
 
 def plot_boundary(model, title):
     plt.figure()
